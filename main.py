@@ -7,7 +7,6 @@ import pyautogui
 
 
 cap = cv2.VideoCapture(0)
-
 pyautogui.FAILSAFE=False
 mpHands = mp.solutions.hands
 hands = mpHands.Hands(max_num_hands=1)
@@ -29,9 +28,10 @@ while True:
             # handLMS is the list of the laandmarks contining landmarks coordinates
             handLMS = handLMS.landmark[mpHands.HandLandmark.INDEX_FINGER_TIP]
             y,x = handLMS.y,handLMS.x
-            pyautogui.moveTo(x,y,duration=0.25)
+            
             y=handLMS.y*image_height
             x=handLMS.x*image_width
+            pyautogui.moveTo(x,y,duration=0.25)
 
             
     cv2.imshow("Image", img)
